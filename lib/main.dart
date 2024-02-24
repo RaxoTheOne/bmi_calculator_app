@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const BMICalculatorApp());
+  runApp(BMICalculatorApp());
 }
 
 class BMICalculatorApp extends StatelessWidget {
-  const BMICalculatorApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,8 +19,6 @@ class BMICalculatorApp extends StatelessWidget {
 }
 
 class BMICalculatorScreen extends StatefulWidget {
-  const BMICalculatorScreen({super.key});
-
   @override
   _BMICalculatorScreenState createState() => _BMICalculatorScreenState();
 }
@@ -38,39 +34,52 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
       appBar: AppBar(
         title: Text('BMI Calculator'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _heightController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Height (cm)',
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Table(
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                children: [
+                  TableRow(
+                    children: [
+                      Text('Height (cm)'),
+                      TextField(
+                        controller: _heightController,
+                        keyboardType: TextInputType.number,
+                      ),
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      Text('Weight (kg)'),
+                      TextField(
+                        controller: _weightController,
+                        keyboardType: TextInputType.number,
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _weightController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Weight (kg)',
+              SizedBox(height: 16.0),
+                      Text(
+                        'BMI: ${_bmiResult.toStringAsFixed(2)}',
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  _calculateBMI();
+                },
+                child: Text('Calculate'),
               ),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                _calculateBMI();
-              },
-              child: Text('Calculate'),
-            ),
-            SizedBox(height: 16.0),
-            Text(
-              'BMI: ${_bmiResult.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
