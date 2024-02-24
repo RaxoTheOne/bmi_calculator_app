@@ -64,13 +64,13 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                 ],
               ),
               SizedBox(height: 16.0),
-                      Text(
-                        'BMI: ${_bmiResult.toStringAsFixed(2)}',
-                        style: TextStyle(
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+              Text(
+                'BMI: ${_bmiResult.toStringAsFixed(2)}',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
